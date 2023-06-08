@@ -8,14 +8,13 @@ class Person {
     return `${this.firstname} ${this.lastname}`;
   }
 
-  //// still not wokring / don't know how to use properly
   set name(fullname) {
-    const [first, last] = fullname.split(",");
+    const [first, last] = fullname.split(" ");
     this.firstname = first;
     this.lastname = last;
   }
 }
 
-const rui = new Person("RuiSilva");
+const rui = new Person("Rui", "Silva");
 
 console.log(rui.name);

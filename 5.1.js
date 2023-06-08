@@ -1,15 +1,11 @@
 const readlineSync = require("readline-sync");
-let ans = "";
-
-const obj = {
-  name: null,
-  year: null,
-  members: [],
-};
 
 function askTvSerie() {
+  const obj = {};
+  let ans = "";
   obj.name = readlineSync.question("what's the name of the show/serie ? ");
   obj.year = readlineSync.question("In what year was produced ? ");
+  obj.members = [];
   do {
     ans = readlineSync.question(
       "Favorite cast members (when you're done just type -done-) ? "
@@ -19,7 +15,7 @@ function askTvSerie() {
     }
   } while (ans !== "-done-");
 
-  console.log(obj);
+  return obj;
 }
 
-askTvSerie();
+module.exports = askTvSerie;

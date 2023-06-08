@@ -9,11 +9,11 @@ class Person {
   }
 
   //// still not wokring / don't know how to use properly
-  //   set name(fullname) {
-  //     const [first, last] = fullname.split(",");
-  //     this.firstname = first;
-  //     this.lastname = last;
-  //   }
+  set name(fullname) {
+    const [first, last] = fullname.split(",");
+    this.firstname = first;
+    this.lastname = last;
+  }
 }
 
 const rui = new Person("RuiSilva");

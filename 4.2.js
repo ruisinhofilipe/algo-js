@@ -11,3 +11,5 @@ function rand10() {
 }
 
 console.log(rand10());
+
+module.exports = rand10;

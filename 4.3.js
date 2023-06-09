@@ -10,6 +10,7 @@ const n = Number(
 /* 
     Function that loops n times (user input) and executes the rand10 function that gives n random numbers, numbers are pushed and stored inside the array
 */
+
 function multiRand() {
   for (let i = 0; i < n; i++) {
     array.push(rand10());

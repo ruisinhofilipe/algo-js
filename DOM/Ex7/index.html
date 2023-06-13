@@ -25,8 +25,7 @@
     <script>
       const ul = document.querySelector("ul");
       const ulChildren = ul.childNodes;
-      let i = 0;
-      let check = [];
+      const liAll = document.querySelectorAll("li");
 
       for (let child of ulChildren) {
         if (child.nodeType === 1) {
@@ -47,8 +46,14 @@
         }
       }
 
-      ulChildren.forEach((child) => {});
-      console.log(check);
+      // Remove duplicate still not perfectly working
+      for (let i = 0; i < ulChildren.length; i++) {
+        for (let j = 1; j < ulChildren.length; j++) {
+          if (ulChildren[i].isEqualNode(ulChildren[j])) {
+            ul.removeChild(ulChildren[j]);
+          }
+        }
+      }
     </script>
   </body>
 </html>

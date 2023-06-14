@@ -26,7 +26,9 @@
       const ul = document.querySelector("ul");
       const ulChildren = ul.childNodes;
       const liAll = document.querySelectorAll("li");
+      const body = document.querySelector("body");
 
+      // Mod Li
       for (let child of ulChildren) {
         if (child.nodeType === 1) {
           child.addEventListener("click", () => {
@@ -46,14 +48,69 @@
         }
       }
 
-      // Remove duplicate still not perfectly working
-      for (let i = 0; i < ulChildren.length; i++) {
-        for (let j = 1; j < ulChildren.length; j++) {
-          if (ulChildren[i].isEqualNode(ulChildren[j])) {
-            ul.removeChild(ulChildren[j]);
+      // // Remove duplicate still not perfectly working
+      // for (let i = 0; i < ulChildren.length; i++) {
+      //   for (let j = 1; j < ulChildren.length; j++) {
+      //     if (ulChildren[i].isEqualNode(ulChildren[j])) {
+      //       ul.removeChild(ulChildren[j]);
+      //     }
+      //   }
+      // }
+
+      body.addEventListener("keyup", (e) => {
+        // Sort randomly li
+        if (e.key === "r" || e.key === "R") {
+          for (let i = ulChildren.length - 1; i >= 0; i--) {
+            if (ulChildren[i].nodeType === 1) {
+              if (ulChildren[i].textContent !== "Fast and Furious") {
+                ul.appendChild(ulChildren[(Math.random() * i) | 1]);
+              }
+            }
           }
+        } else if (e.key === "d" || e.key === "D") {
+          // // Create a fast and furious clone
+          const ff = document.querySelector(".important");
+          const ffClone = ff.cloneNode(true);
+          ul.appendChild(ffClone);
         }
-      }
+      });
+
+      const createDiv = document.createElement("div");
+      const createSelect = document.createElement("select");
+      createSelect.addEventListener("change", () => {
+        if (createSelect.value === "important franchises") {
+          ulChildren.forEach((child) => {
+            if (child.nodeType === 1) {
+              if (child.getAttribute("class") === "important") {
+                child.style.display = "";
+              } else {
+                child.style.display = "none";
+              }
+            }
+          });
+          console.log("important only");
+        } else if (createSelect.value === "normal franchises") {
+          ulChildren.forEach((child) => {
+            if (child.nodeType === 1) {
+              if (child.getAttribute("class") === "important") {
+                child.style.display = "none";
+              } else {
+                child.style.display = "";
+              }
+            }
+          });
+          console.log("normal only");
+        }
+      });
+      const firstOption = document.createElement("option");
+      firstOption.value = "important franchises";
+      firstOption.textContent = "important franchises";
+      const secondOption = document.createElement("option");
+      secondOption.value = "normal franchises";
+      secondOption.textContent = "normal franchises";
+      createSelect.appendChild(firstOption);
+      createSelect.appendChild(secondOption);
+      body.appendChild(createSelect);
     </script>
   </body>
 </html>
